@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include <string.h>
+#include <conio.h>
+
 #include "compromisso.h"
 #include "agenda.h"
 
@@ -8,6 +11,178 @@ int main()
 {
     menuPrincipal();
     return 0;
+}
+
+void menuImprimeCompromissosACumprir()
+{
+    int id;
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    imprimeCompromissosACumprir(id);
+}
+
+void menuImprimeCompromissosCancelados()
+{
+    int id;
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    imprimeCompromissosCancelados(id);
+}
+
+void menuImprimeCompromissosAdiados()
+{
+    int id;
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    imprimeCompromissosAdiados(id);
+}
+
+void menuRetornaNumeroTotal()
+{
+    int id;
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    retornaNumeroTotal(id);
+}
+
+void menuRetornaNumeroCancelados()
+{
+    int id;
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    retornaAdiantamentos(id);
+}
+
+void menuRetornaNumeroAdiantamentos()
+{
+    int id;
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    retornaAdiantamentos(id);
+}
+
+void menuResolverConflitoNaAgenda()
+{
+    int id;
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    resolveConflitoAgenda(id);
+}
+
+void menuImprimirAgenda()
+{
+    int id;
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    imprimeAgenda(id);
+}
+
+void menuRemoverCompromisso()
+{
+    int id, idComp;
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    printf("B. DIGITE O ID DO COMPROMISSO: ");
+    scanf("%d", &idComp);
+
+    removerCompromissoDaAgenda(id, idComp);
+}
+
+void menuInserirCompromissoNaAgenda()
+{
+    int id, tipoCompromisso, duracao;
+    char data[20], hora[20], nome[100];
+
+    printf("\nA. Digite o id da agenda: ");
+    scanf("%d", &id);
+
+    printf("B. Escolha abaixo o tipo de compromisso\n");
+
+    printf("\nOPCOES: ");
+    printf("\n1. Aula");
+    printf("\n2. Orientacao");
+    printf("\n3. Compromisso Particular");
+    printf("\n4. Reuniao");
+    printf("\n5. Evento");
+    printf("\n6. Para sair");
+    printf("\nDIGITE O COMPROMISSO DESEJADO: ");
+    scanf("%d", &tipoCompromisso);
+
+    if (tipoCompromisso >= 1 && tipoCompromisso <= 5)
+    {
+        printf("\nA. Informe a data no formato (dd/MM/yyyy):");
+        scanf("%s", &data);
+
+        printf("B. Informe a hora no formato (xx:xx):");
+        scanf("%s", &hora);
+
+        printf("C. Informe a duracao do compromisso em minutos:");
+        scanf("%d", &duracao);
+
+        printf("D. Informe o nome do compromisso:");
+        scanf("%s", &nome);
+
+        inserirCompromissoNaAgenda(id, tipoCompromisso, data, hora, duracao, nome);
+    }
+}
+
+void menuRecuperaAgenda()
+{
+    int id;
+    char data[20];
+
+    printf("\nA. DIGITE O ID DA AGENDA: ");
+    scanf("%d", &id);
+
+    printf("B. DIGITE UMA DATA NO FORMATO (dd/MM/yyyy): ");
+    scanf("%s", &data);
+
+    recuperarAgenda(id, data);
+}
+
+void menuCriaAgenda()
+{
+    int idProf, ano;
+    char nome[100];
+
+    printf("\nA. DIGITE O ID DO PROFESSOR: ");
+    scanf("%d", &idProf);
+
+    printf("B. DIGITE O NOME DO PROFESSOR: ");
+    scanf("%s", &nome);
+
+    printf("C. DIGITE O ANO DA AGENDA NO FORMATO (yyyy): ");
+    scanf("%d", &ano);
+
+    int id = criarAgenda(idProf, nome, ano);
+
+    if (id != 0)
+    {
+        printf("\nAgenda criada!\n");
+        printf("Id: %d \n", id);
+    }
+    else
+    {
+        printf("Falha ao criar agenda!\n");
+    }
 }
 
 void menuAgenda()
@@ -36,40 +211,40 @@ void menuAgenda()
         switch (opcao)
         {
         case 1:
-            //menuCriaAgenda();
+            menuCriaAgenda();
             break;
         case 2:
-            //menuRecuperaAgenda();
+            menuRecuperaAgenda();
             break;
         case 3:
-            //();
+            menuInserirCompromissoNaAgenda();
             break;
         case 4:
-            //();
+            menuRemoverCompromisso();
             break;
         case 5:
-            //();
+            menuImprimirAgenda();
             break;
         case 6:
-            //();
+            menuResolverConflitoNaAgenda();
             break;
         case 7:
-            //();
+            menuRetornaNumeroAdiantamentos();
             break;
         case 8:
-            //();
+            menuRetornaNumeroCancelados();
             break;
         case 9:
-            //();
+            menuRetornaNumeroTotal();
             break;
         case 10:
-            //();
+            menuImprimeCompromissosAdiados();
             break;
         case 11:
-            //();
+            menuImprimeCompromissosCancelados();
             break;
         case 12:
-            //();
+            menuImprimeCompromissosACumprir();
             break;
         default:
             break;
@@ -99,8 +274,7 @@ void menuRetornarStatusCompromisso()
 
 void menuDefinirStatusCompromisso()
 {
-    int id;
-    int status;
+    int id, status;
 
     printf("DIGITE O ID DO COMPROMISSO DESEJADO: ");
     scanf("%d", &id);
@@ -113,8 +287,7 @@ void menuDefinirStatusCompromisso()
 
 void menuConflitoNaAgenda()
 {
-    int id1;
-    int id2;
+    int id1, id2;
 
     printf("DIGITE O ID DO PRIMEIRO COMPROMISSO DESEJADO: ");
     scanf("%d", &id1);
@@ -127,8 +300,7 @@ void menuConflitoNaAgenda()
 
 void menuDefineCompromissoAdiavel()
 {
-    int id;
-    int flag;
+    int id, flag;
 
     printf("DIGITE O ID DO COMPROMISSO DESEJADO: ");
     scanf("%d", &id);
@@ -150,8 +322,7 @@ void menuRetornaPrioridade()
 
 void menuAlteraPrioridade()
 {
-    int id;
-    int novaPrioridade;
+    int id, novaPrioridade;
 
     printf("DIGITE O ID DO COMPROMISSO DESEJADO: ");
     scanf("%d", &id);
@@ -163,11 +334,8 @@ void menuAlteraPrioridade()
 
 void menuIniciaCompromisso()
 {
-    int compromisso;
-    char data[20];
-    char hora[20];
-    int duracao;
-    char nome[100];
+    int compromisso, duracao;
+    char data[20], hora[20], nome[100];
 
     do
     {
