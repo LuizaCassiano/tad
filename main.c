@@ -2,7 +2,6 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <string.h>
-#include <conio.h>
 
 #include "compromisso.h"
 #include "agenda.h"
