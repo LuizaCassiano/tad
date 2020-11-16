@@ -1,5 +1,5 @@
 # tad
-Trabalho com Tipos Abstratos de Dados
+Tipos Abstratos de Dados
 
 Para executar o projeto:
 
